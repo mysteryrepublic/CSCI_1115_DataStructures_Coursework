@@ -11,84 +11,76 @@ import java.util.Scanner;
 
 public class Exercise08_37 {
   public static void main(String[] args) {
-	 String[][] stateCapital = {
-		{"Alabama", "Montgomery"},
-		{"Alaska", "Juneau"},
-		{"Arizona", "Phoenix"},
-		{"Arkansas", "Little Rock"},
-		{"California", "Sacramento"},
-		{"Colorado", "Denver"},
-		{"Connecticut", "Hartford"},
-		{"Delaware", "Dover"},
-		{"Florida", "Tallahassee"},
-		{"Georgia", "Atlanta"},
-		{"Hawaii", "Honolulu"},
-		{"Idaho", "Boise"},
-		{"Illinois", "Springfield"},
-		{"Indiana", "Indianapolis"},
-		{"Iowa", "Des Moines"},
-		{"Kansas", "Topeka"},
-		{"Kentucky", "Frankfort"},
-		{"Louisiana", "Baton Rouge"},
-		{"Maine", "Augusta"},
-		{"Maryland", "Annapolis"},
-		{"Massachusettes", "Boston"},
-		{"Michigan", "Lansing"},
-		{"Minnesota", "Saint Paul"},
-		{"Mississippi", "Jackson"},
-		{"Missouri", "Jefferson City"},
-		{"Montana", "Helena"},
-		{"Nebraska", "Lincoln"},
-     	{"Nevada", "Carson City"},
-     	{"New Hampshire", "Concord"},
-     	{"New Jersey", "Trenton"},
-      	{"New York", "Albany"},
-      	{"New Mexico", "Santa Fe"},
-      	{"North Carolina", "Raleigh"},
-      	{"North Dakota", "Bismarck"},
-      	{"Ohio", "Columbus"},
-      	{"Oklahoma", "Oklahoma City"},
-      	{"Oregon", "Salem"},
-      	{"Pennsylvania", "Harrisburg"},
-      	{"Rhode Island", "Providence"},
-      	{"South Carolina", "Columbia"},
-      	{"South Dakota", "Pierre"},
-      	{"Tennessee", "Nashville"},
-      	{"Texas", "Austin"},
-      	{"Utah", "Salt Lake City"},
-      	{"Vermont", "Montpelier"},
-      	{"Virginia", "Richmond"},
-      	{"Washington", "Olympia"},
-      	{"West Virginia", "Charleston"},
-      	{"Wisconsin", "Madison"},
-      	{"Wyoming", "Cheyenne"}
-      };
+	  LinkedList<String[]> list = new LinkedList<>();
 
-	 
-      
-    Scanner input = new Scanner(System.in);
-    
-    int correctCount = 0;
+      Collections.addAll(list, stateCapitals);
 
-    for (int i = 0; i < stateCapital.length; i++) {
-    	
-    		if(i > 0 && i < 50) {
-			int num = (int)(Math.random() * 50);
-			i = num;
-		}
-    		
-      // Prompt the user with a question
-      System.out.print("What is the capital of " + stateCapital[i][0] + "? ");
-      String capital = input.nextLine().trim().toLowerCase();
-      
-      if (capital.toLowerCase().equals(stateCapital[i][1].toLowerCase())) {
-        System.out.println("Your answer is correct");
-        correctCount++;
+      Scanner input = new Scanner(System.in);
+      int correctCount = 0;
+      while (list.size() > 0) {
+          Collections.shuffle(list);
+          String[] s = list.pollFirst();
+          System.out.print("What is the capital of " + s[0] +"? ");
+          if (input.nextLine().equalsIgnoreCase(s[1])) {
+              correctCount++;
+              System.out.println("Your answer is correct");
+          } else {
+              System.out.println("The correct answer should be " + s[1]);
+          }
       }
-      else
-        System.out.println("The correct answer should be " + stateCapital[i][1]);
-    }
-
-    System.out.println("The correct count is " + correctCount);
+      System.out.println("The correct count is " + correctCount);
   }
+
+  private static String[][] stateCapitals = {
+          {"Alabama", "Montgomery"},
+          {"Alaska", "Juneau"},
+          {"Arizona", "Phoenix"},
+          {"Arkansas", "Little Rock"},
+          {"California", "Sacramento"},
+          {"Colorado", "Denver"},
+          {"Connecticut", "Hartford"},
+          {"Delaware", "Dover"},
+          {"Florida", "Tallahassee"},
+          {"Georgia", "Atlanta"},
+          {"Hawaii", "Honolulu"},
+          {"Idaho", "Boise"},
+          {"Illinois", "Springfield"},
+          {"Maryland", "Annapolis"},
+          {"Minnesota", "Saint Paul"},
+          {"Iowa", "Des Moines"},
+          {"Maine", "Augusta"},
+          {"Kentucky", "Frankfort"},
+          {"Indiana", "Indianapolis"},
+          {"Kansas", "Topeka"},
+          {"Louisiana", "Baton Rouge"},
+          {"Oregon", "Salem"},
+          {"Oklahoma", "Oklahoma City"},
+          {"Ohio", "Columbus"},
+          {"North Dakota", "Bismark"},
+          {"New York", "Albany"},
+          {"New Mexico", "Santa Fe"},
+          {"New Jersey", "Trenton"},
+          {"New Hampshire", "Concord"},
+          {"Nevada", "Carson City"},
+          {"Nebraska", "Lincoln"},
+          {"Montana", "Helena"},
+          {"North Carolina", "Raleigh"},
+          {"Missouri", "Jefferson City"},
+          {"Mississippi", "Jackson"},
+          {"Massachusetts", "Boston"},
+          {"Michigan", "Lansing"},
+          {"Pennsylvania", "Harrisburg"},
+          {"Rhode Island", "Providence"},
+          {"South Carolina", "Columbia"},
+          {"South Dakota", "Pierre"},
+          {"Tennessee", "Nashville"},
+          {"Texas", "Austin"},
+          {"Utah", "Salt Lake City"},
+          {"Vermont", "Montpelier"},
+          {"Virginia", "Richmond"},
+          {"Washington", "Olympia"},
+          {"West Virginia", "Charleston"},
+          {"Wisconsin", "Madison"},
+          {"Wyoming", "Cheyenne"}
+  };
 }
