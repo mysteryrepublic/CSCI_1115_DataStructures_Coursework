@@ -12,15 +12,17 @@ public class Exercise08_37 {
 
 		Scanner input = new Scanner(System.in);
 		Map<String, String> data = getData();								// states and their capitals
-		System.out.print("Enter a state you want to know the capital of ");	// have user to enter a state
-		String state = input.nextLine();		
-		state = state.toLowerCase();
-		//user inputs a states
-		if (data.get(state) != null) {										// show the capital for the state if map isn't empty
-			System.out.println("The capital of is " + data.get(state));	
-		}
-		else {																//else statement so code doesn't 'break'
-			System.out.println("We do not have that in our system, please try a different state");
+		while(data.size() > 0) {
+			System.out.print("Enter a state you want to know the capital of ");	// have user to enter a state
+			String state = input.nextLine();		
+			state = state.toLowerCase();
+			//user inputs a states
+			if (data.get(state) != null) {										// show the capital for the state if map isn't empty
+				System.out.println("The capital of is " + data.get(state));	
+			}
+			else {																//else statement so code doesn't 'break'
+				System.out.println("We do not have that in our system, please try a different state");
+			}
 		}
 	}
 	public static Map<String, String> getData() {							
@@ -76,11 +78,11 @@ public class Exercise08_37 {
 				{"West Virginia", "Charleston"}, 
 				{"Wisconsin", "Madison"}, 
 				{"Wyoming", "Cheyenne"}};
-		
+
 		for (int s = 0; s < stateCapitals.length; s++) {
 			map.put(stateCapitals[s][0].toLowerCase(), stateCapitals[s][1]);	//puts everything in the map since it is an array
 		}
-		
+
 		return map;								//return statement because I need one and this is what it recommended
 	}
 }
