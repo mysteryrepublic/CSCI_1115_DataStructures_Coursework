@@ -10,32 +10,35 @@ import java.util.*;
 
 public class Assignment_22_1 {
 	public static void main(String[] args) {	
-		Scanner input = new Scanner(System.in);				//Scanner
-		LinkedList<Character> maximum = new LinkedList<>();	//linkedlist for saving maximum consecutive substring
-		LinkedList<Character> list = new LinkedList<>();		//linkedlist for keeping track of substrings
-		System.out.print("Please enter a string");			//asking for user input for a string
-		String string = input.nextLine();					//getting the user input of a string
-
-		for(int i=0; i < string.length(); i++) {				//when we reach the next substring clear list to start keeping the next one
-			if(list.size() > 1 && string.charAt(i) <= list.getLast() && list.contains(string.charAt(i))) {
-				list.clear();
-			}
-			list.add(string.charAt(i));
-			if(list.size() > maximum.size()) {			//saving the maximum substring to maximum and clearing the last max if new one has been reached
-				maximum.clear();
-				maximum.addAll(list);
-			}
-		}
-		for(Character ch: maximum) {
-			System.out.print(ch);
-		}
-		System.out.println();
+		 String input = promptString();
+	        String substring = getMaximum(input);
+	        System.out.println(substring);
+	    }
+	    private static int compare(String string, String string2) {
+	        return string.length() - string2.length();
+	    }
+	    private static String getMaximum(String input) {
+	        String maxLength = "";
+	        int index = 0;
+	        for (int index2 = 1; index2 <= input.length(); index2++) {
+	            if (index2 == input.length() || input.charAt(index2) <= input.charAt(index2 - 1)) {
+	                String substring = input.substring(index, index2);
+	                if (compare(maxLength, substring) < 0) {
+	                    maxLength = substring;
+	                }
+	                index = index2;
+	            }
+	        }
+	        return maxLength;
+	    }
+	    private static String promptString() {
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Enter a string: ");
+	        return scanner.nextLine();
+	    }
 	}
-
-
-}
 /*
- * since there are two for loops that are not nested together than the time complexity would be O(2n)
+ * since there is one for loops than the time complexity would be O(n)
  * 
  * 
  * */
