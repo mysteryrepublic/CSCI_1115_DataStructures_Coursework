@@ -37,12 +37,12 @@ Code Example:
 			Platform.runLater(() -> taLog.appendText(new Date() + ": Server started at socket 8000\n"));
 			//ready to create a session for every two players
 			while (true)	{
-				Platform.runLater(() -> taLog.appendText(new Date() + ": Wait for players to join session " 					+ sessionNo + '\n'));
+				Platform.runLater(() -> taLog.appendText(new Date() + ": Wait for players to join session " + sessionNo + '\n'));
 				//connect player 1
 				Socket player1 = serverSocket.accept();
 				Platform.runLater(() -> {
-				taLog.appendText(new Date() + ": Player 1 joined the session " + sessionNo + '\n');
-				taLog.appendText("Player 1's IP address" + player1.getInetAddress().getHostAddress() + 						'\n');
+					taLog.appendText(new Date() + ": Player 1 joined the session " + sessionNo + '\n');
+					taLog.appendText("Player 1's IP address" + player1.getInetAddress().getHostAddress() + '\n');
 			});
 			//notify that the player is player 1
 			new DataOutputStream(player1.getOutputStream()).writeInt(Player1);
@@ -50,13 +50,12 @@ Code Example:
 			Socket player2 = serverSocket.accept();
 			Platform.runLater(() -> {
 				taLog.appendText(new Date() + ": Player 2 joined the session " + sessionNo + '\n');
-				taLog.appendText("Plater 2's IP address" + player1.getInetAddress().getHostAddress() + 						'\n');
+				taLog.appendText("Plater 2's IP address" + player1.getInetAddress().getHostAddress() + '\n');
 			});
 			//notify that the player is play 2
 			new DataOutputStream(player2.getOutputStream()).writeInt(Player2);
 			//display this session and increment session number
-			Platform.runLater(() -> 
-				taLog.appendText(new Date() + ": Start a thread for session " + sessionNo++ + '\n'));
+			Platform.runLater(() ->  taLog.appendText(new Date() + ": Start a thread for session " + sessionNo++ + '\n'));
 			//launch a new thread for this session of two players
 			new Thread (new HandleASession(player1, player2)).start();
 			}
